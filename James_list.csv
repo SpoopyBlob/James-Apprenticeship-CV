@@ -1,0 +1,10 @@
+id,task,deadline,start_timestamp,status,before_del_status,end_timestamp
+
+0,To create a todo list app,2025-05-05 00:00:00,2025-01-31 19:26:52,False,False,N/A
+
+1,To build a house,2025-02-02 00:00:00,2025-02-01 20:46:38,False,N/A,N/A
+
+2,Example todo list,2021-12-02 00:00:00,2025-02-01 20:49:33,False,N/A,N/A
+
+
+
