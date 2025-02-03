@@ -1,3 +1,2 @@
 # James-Apprenticeship-CV
-todolist.py \n
-This is a basic todolist application that allows the user to create, delete, modify and complete tasks. This isn't a complete project but I feel as if I have gained all the learning exsperience I can from this project. I have decided to carry on with my learning and I am looking forward to creating my next project. 
+"todolist.py" is a simple to-do list app that lets users create, delete, edit, and mark tasks as complete. While this isn’t a fully finished project, I feel like I’ve learned everything I can from it. I’m excited to move on to my next project and continue growing my skills.
