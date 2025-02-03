@@ -57,7 +57,7 @@ def new_profile(username):
     write_file(mode = "valid_users", user = username)
     return "Success"
 
-#This function handels dates
+#This function handles dates
 def date_string_converter(date):
     valid = False
     check = 0
