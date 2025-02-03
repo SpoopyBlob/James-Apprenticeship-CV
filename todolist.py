@@ -177,7 +177,7 @@ def present_list(username):
     if true_count == row_count:
         print("There are no tasks in progress")
         
-    #Tasks in progress print
+    #Tasks completed print
     complete = "Tasks completed" 
     print(complete)
     print("-" * len(complete))
