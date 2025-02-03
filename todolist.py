@@ -57,7 +57,7 @@ def new_profile(username):
     write_file(mode = "valid_users", user = username)
     return "Success"
 
-#This function handles dates
+#This function handels dates
 def date_string_converter(date):
     valid = False
     check = 0
@@ -308,16 +308,18 @@ def delete_undelete_file (username):
             exit_function("You have no deleted tasks.")
             return
         second_input = input("Please enter the ID of the task you would like to un-delete")
+        valid_id = False
         for row in file:
             if second_input == row["id"] and row["status"] == "del":
                 status_before = row["before_del_status"]
                 row["status"] = status_before
                 write_file(filename, file)
+                valid_id = True
                 return
             elif second_input == row["id"] and row["status"] != "del":
                 exit_function("It looks like the task wasnt actually deleted, so theres no need to undo anything.")
                 return
-            else:
+        if valid_id == False:
                 exit_function("This ID dosen't match with any existing task.")
                 return
     #delete file
@@ -327,17 +329,19 @@ def delete_undelete_file (username):
             if row["status"] != "del":
                 print("ID: {id}, Task: {task}".format(id=row["id"], task=row["task"]))
         entered_id = input("Please enter the ID of the task you would like to delete")
+        valid_id = False
         for row in file:
             if entered_id == row["id"] and row["status"] != "del":
                 current_status = row["status"]
                 row["before_del_status"] = current_status
                 row["status"] = "del"
                 write_file(filename, file)
+                valid_id = True
                 return
             elif entered_id == row["id"] and row["status"] == "del":
                 exit_function("This task has already been deleted.")
                 return
-            else:
+        if valid_id == True:
                 exit_function("You have entered in an invalid ID.")
 
 #I created this function so that the user can read the text before being sent back to the main page and flooded with information
