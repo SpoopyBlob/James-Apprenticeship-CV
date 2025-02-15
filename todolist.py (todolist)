@@ -4,7 +4,7 @@
 import csv
 from datetime import datetime
 
-#Filename function, to clean up code and stop repatition
+#Filename function, to clean up code and stop repetition
 def file_name(username = "user", mode = "default"):
     if mode == "default":
         filename = "{username}_list.csv".format(username = username)
@@ -57,7 +57,7 @@ def new_profile(username):
     write_file(mode = "valid_users", user = username)
     return "Success"
 
-#This function handels dates
+#This function handles dates
 def date_string_converter(date):
     valid = False
     check = 0
@@ -235,7 +235,7 @@ def mark_task_complete(username):
     
     write_file(filename, file)
 
-#allows you to modify, status of completed tasks, the task and deadline.
+#allows you to modify, the status of completed tasks, the task and the deadline.
 def modify_list(username):
     list_id = input("Enter ID: ")
     filename = file_name(username)
