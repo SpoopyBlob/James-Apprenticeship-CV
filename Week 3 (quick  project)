@@ -1,0 +1,86 @@
+#include<string.h>
+#include<stdio.h>
+
+int main() {
+//Project task 1: Reverse a string
+    
+    //String to reverse
+    char string[] = "gnirts siht esreveR";
+    //Calculating string length - null terminator
+    int string_length = strlen(string);
+    //Empty string to append (+1 for null terminator)
+    char empty_string[string_length + 1];
+    //This variable will access the index of empty string within the for loop
+    int placeholder_variable = 0;
+
+
+    //Reverses the string
+    for(int i = string_length - 1; i >= 0; i--) {
+        empty_string[placeholder_variable] = string[i];
+        placeholder_variable++; 
+    }
+    //Adds null terminator
+    empty_string[placeholder_variable] = '\0';
+
+    printf("%s\n", empty_string);
+//Project task 2: Sort a number of arrays in numerical order
+
+    //Array to organise
+    int num_to_organiseA[] = {24, 2, 657, 3, 234, 32, 76, 92, 59, 56, 432, 23, 1, 7, 91, 0};
+    //Calculate size of array
+    int length_of_array = sizeof(num_to_organiseA)/sizeof(int);
+    //Uninitialized array, same size as num_to_organise
+    int empty_array[length_of_array];
+
+    //Iterates for every element in num_to_organise
+    for(int i = 0; i < length_of_array; i++) {
+        //The first element gets printed to the array automatically
+        if (i == 0) {
+            empty_array[i] = num_to_organiseA[i];
+            continue;
+        } 
+        //if the previous element is less than the next element append the next element to the next index
+        if (empty_array[i - 1] < num_to_organiseA[i]) {
+            empty_array[i] = num_to_organiseA[i];
+        }
+
+        //if the previous element is more than the next element
+        else if (empty_array [i - 1] > num_to_organiseA[i]) {
+            //size of array
+            int length_of_empty_array = sizeof(empty_array)/sizeof(int);
+            //This will calculate the index we need to append at
+            int index_to_append_at;           
+            for(int a = 0; a < length_of_empty_array; a++) {
+                if (num_to_organiseA[i] < empty_array[a]) {
+                    index_to_append_at = a;
+                    break;
+                }
+            }
+           
+            //This will create a placeholder array from a specific index to rewrite the empty array.
+            int placeholder_array[length_of_empty_array];
+            //I assign the first value outside of the loop
+            placeholder_array[0] = num_to_organiseA[i];
+            //I use a placeholder variable to access the placeholder_array indexs
+            int placeholder_variable_2 = 1;
+            for (int b = index_to_append_at; b < length_of_empty_array; b++) {
+                placeholder_array[placeholder_variable_2] = empty_array[b];
+                placeholder_variable_2++;
+                
+            }
+            
+            //This will rewrite empty_array using the placeholder_array
+            placeholder_variable_2 = 0;
+            for(int c = index_to_append_at; c < length_of_empty_array; c++) {
+                empty_array[c] = placeholder_array[placeholder_variable_2];
+                placeholder_variable_2++;
+            }
+        }
+
+    }
+    //prints the array in numeric order
+    for (int i = 0; i < length_of_array; i++) {
+        printf("%i |", empty_array[i]);
+    }
+   
+}
