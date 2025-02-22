@@ -3,3 +3,5 @@
 
 "week_3.c" is my week 3 project in which I tasked myself to reverse a string and reorder an array of numbers in numerical order using only what I have learned through code_acadamy and my notes. 
 
+"Game.py(WIP)" is a spontaneous project I decided to work on when learning OOP. This work in progress is a game where your task is to defeat 8 bosses by answering math questions that will increase in difficulty. 
+
