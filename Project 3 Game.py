@@ -512,7 +512,7 @@ while running == True:
 
         if boss.health_bar <= 0:
             player.new_heal_item()
-            if boss_level == 8:
+            if player.boss_level == 8:
                 print("You have completed the game! Welldone, You can continue to play at this level or create another character to restart")
             player.boss_level += 1
 
