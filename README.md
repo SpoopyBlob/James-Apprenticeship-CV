@@ -3,5 +3,4 @@
 
 "week_3.c" is my week 3 project in which I tasked myself to reverse a string and reorder an array of numbers in numerical order using only what I have learned through code_acadamy and my notes. 
 
-"Game.py(WIP)" is a spontaneous project I decided to work on when learning OOP. This work in progress is a game where your task is to defeat 8 bosses by answering math questions that will increase in difficulty. Two CSV are required, user check and boss profile, the third file is a csv created to save user stats.
-
+"Game.py(WIP)" is a spontaneous project I decided to work on when learning OOP. This is a game where your task is to defeat 8 bosses by answering math questions that will increase in difficulty. You can level up, upgrade stats and choose your actions during a fight. Two CSV are required, user check and boss profile. User check contains the name of any existing user, and boss profile includes the stats and other data related to the bosses. The final file, "James's_player_profile" is an example of the data that gets saved when a user saves their character.
