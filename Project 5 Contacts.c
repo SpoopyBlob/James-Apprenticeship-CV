@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <string.h>
 
+void resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize);
+void allocate_new_contact (char*** contactNames, char*** contactNumbers, int contactSize);
+
 int main (void) {
     int contactSize = 0;
     int maxSize = 1;
@@ -13,12 +16,11 @@ int main (void) {
     char** contactNames = malloc(maxSize * sizeof(char*));
     char** contactNumbers = malloc(maxSize * sizeof(char*));
     bool running = true;
-    contactNames[contactSize] = malloc(30 * sizeof(char)); 
-    contactNumbers[contactSize] = malloc(15 * sizeof(char));
-
 
     while (running == true) {
-         //Displays my contacts
+        printf("\n\nMain Page:\n"); 
+        
+        //Displays my contacts
         for (int i = 0; i < contactSize; i++) {
             printf("Contact %i:\n", i + 1);
             printf("Name: %s\n", contactNames[i]);
@@ -43,26 +45,13 @@ int main (void) {
             scanf("%14s", number);
             while (getchar() != '\n');
 
-            if (contactSize < maxSize) {
-                //I use strcpy to copy the string into the memory of my array rathen than creating a pointer to my name and number variables
-                strcpy(contactNames[contactSize], name);
-                strcpy(contactNumbers[contactSize], number);
-                contactSize++;
-            } else if (contactSize == maxSize) {
-                //Dymanically resizes our "memory arrays"
-                maxSize++;
-                contactNames = realloc(contactNames, maxSize * sizeof(char*));
-                contactNumbers = realloc(contactNumbers, maxSize * sizeof(char*));
+            maxSize++;
+            resize_pointer_array(&contactNames, &contactNumbers, maxSize);
+            allocate_new_contact(&contactNames, &contactNumbers, contactSize);
 
-                //Allocates memory for the next index in my "memory array"
-                contactNames[contactSize] = malloc(30 * sizeof(char)); 
-                contactNumbers[contactSize] = malloc(15 * sizeof(char)); 
-
-                strcpy(contactNames[contactSize], name);
-                strcpy(contactNumbers[contactSize], number);
-                contactSize++;
-
-            }
+            strcpy(contactNames[contactSize], name);
+            strcpy(contactNumbers[contactSize], number);
+            contactSize++;
             
         } else if (user_input == '2') {
             printf("\nEnter the name of the contact you would like to remove: \n");
@@ -93,23 +82,38 @@ int main (void) {
 
             //Free memory to prevent memory leak
             free(contactNames[contactSize - 1]);
-            free(contactNumbers[contactSize] - 1);
+            free(contactNumbers[contactSize - 1]);
 
             //Update contact size
             contactSize--;
 
             //Reallocate size of contact list
             maxSize--;
-            contactNames = realloc(contactNames, contactSize * sizeof(char*));
-            contactNumbers = realloc(contactNumbers, contactSize * sizeof(char*));
+            resize_pointer_array(&contactNames, &contactNumbers, maxSize);
             
         } else if (user_input == '3') {
             printf("\nExit\n");
             running = false;
         } else {
             printf("\nInvalid Input\n");
-        
-
         }
     }
-}   
+
+}
+
+void resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize) {
+    char** tempNames = realloc(*contactNames, maxSize * sizeof(char*));
+    char** tempNumbers = realloc(*contactNumbers, maxSize * sizeof(char*));
+
+    if (tempNames == NULL || tempNumbers == NULL) {
+        printf("\nRealloc error, process canceled, try again\n");
+    } else {
+        *contactNames = tempNames;
+        *contactNumbers = tempNumbers;
+    }
+}
+
+void allocate_new_contact (char*** contactNames, char*** contactNumbers, int contactSize) {
+    (*contactNames)[contactSize] = malloc(30 * sizeof(char)); 
+    (*contactNumbers)[contactSize] = malloc(15 * sizeof(char));
+}
