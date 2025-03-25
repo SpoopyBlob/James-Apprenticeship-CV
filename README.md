@@ -9,4 +9,4 @@ Note: Some of these projects will stay incomplete. As I learn more, my projects 
 
 "DocPro-S" is a project I'm currently working on, it's a document processing system for .txt files. I'm using my newly found knowledge of linked lists, stacks, queues, OS and shutil modules to create my project. I plan to add a File Manifesto, organise my file repository by date and much more. Here is a link to the git repository: https://github.com/SpoopyBlob/DocPro-S-WIP-very-early-stages-
 
-"Contacts.c" is a small project I'm working on that will dynamically store contact information, name and number in memory. For a low-level language such as C, this will be a great learning experience for producing programs that allocate memory based on the program's needs.
+"Contacts.c" is a small project I'm working on that will dynamically store contact information, name and number in memory. For a low-level language such as C, this will be a great learning experience for producing programs that allocate memory based on the program's needs. Link to repository: https://github.com/SpoopyBlob/Contacts-Project
