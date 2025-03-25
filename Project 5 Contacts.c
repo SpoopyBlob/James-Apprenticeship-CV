@@ -62,13 +62,47 @@ int main (void) {
                 strcpy(contactNumbers[contactSize], number);
                 contactSize++;
 
-            } else {
-                printf("\nFeature not implamented yet, contacts full\n");
             }
-
             
         } else if (user_input == '2') {
-            printf("\nRemove\n");
+            printf("\nEnter the name of the contact you would like to remove: \n");
+            char name[30];
+            scanf("%29s", name);
+            while (getchar() != '\n');
+
+            //Finds index
+            int index = -1;
+            for (int i = 0; i < contactSize; i++) {
+                if (strcmp(contactNames[i], name) == 0) {
+                    index = i;
+                    break;
+                } 
+            }
+
+            //If index is not found, break
+            if (index == -1) {
+                printf("\nName not in contacts\n");
+                continue;
+            } 
+
+            //Access index then shift every other element down one
+            for (int i = index; i < contactSize - 1; i++) {
+                strcpy(contactNames[i], contactNames[i + 1]);
+                strcpy(contactNumbers[i], contactNumbers[i + 1]);
+            }
+
+            //Free memory to prevent memory leak
+            free(contactNames[contactSize - 1]);
+            free(contactNumbers[contactSize] - 1);
+
+            //Update contact size
+            contactSize--;
+
+            //Reallocate size of contact list
+            maxSize--;
+            contactNames = realloc(contactNames, contactSize * sizeof(char*));
+            contactNumbers = realloc(contactNumbers, contactSize * sizeof(char*));
+            
         } else if (user_input == '3') {
             printf("\nExit\n");
             running = false;
