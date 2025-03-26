@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-void resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize);
+int resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize);
 void allocate_new_contact (char*** contactNames, char*** contactNumbers, int contactSize);
 
 int main (void) {
@@ -46,7 +46,11 @@ int main (void) {
             while (getchar() != '\n');
 
             maxSize++;
-            resize_pointer_array(&contactNames, &contactNumbers, maxSize);
+            int func_work = resize_pointer_array(&contactNames, &contactNumbers, maxSize);
+            if (func_work == 1) {
+                continue;
+            }
+
             allocate_new_contact(&contactNames, &contactNumbers, contactSize);
 
             strcpy(contactNames[contactSize], name);
@@ -89,8 +93,12 @@ int main (void) {
 
             //Reallocate size of contact list
             maxSize--;
-            resize_pointer_array(&contactNames, &contactNumbers, maxSize);
             
+            int func_work = resize_pointer_array(&contactNames, &contactNumbers, maxSize);
+            if (func_work == 1) {
+                continue;
+            }
+
         } else if (user_input == '3') {
             printf("\nExit\n");
             running = false;
@@ -101,15 +109,17 @@ int main (void) {
 
 }
 
-void resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize) {
+int resize_pointer_array (char*** contactNames, char*** contactNumbers, int maxSize) {
     char** tempNames = realloc(*contactNames, maxSize * sizeof(char*));
     char** tempNumbers = realloc(*contactNumbers, maxSize * sizeof(char*));
 
     if (tempNames == NULL || tempNumbers == NULL) {
         printf("\nRealloc error, process canceled, try again\n");
+        return 1;
     } else {
         *contactNames = tempNames;
         *contactNumbers = tempNumbers;
+        return 0;
     }
 }
 
