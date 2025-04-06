@@ -23,6 +23,9 @@ class Node:
 
     def set_prev_node(self, node):
         self.prev_node = node
+    
+    def set_value(self, value):
+        self.value = value
 
 
 class LinkedList:
@@ -105,8 +108,20 @@ class HashMap():
 
         if key_exist == None:
             self.array[array_index].add_node(key, value)
+            print(f"{key} has been added to your contact")
         else:
-            print("User already exists")
+            valid_input = False
+            while valid_input == False:
+                user_input = input("Contact already exists, would you like to overwrite the number? Y/N: ")
+                if user_input.upper() == "Y":
+                    key_exist.set_value(value)
+                    print(f"{key}'s number has been updated!")
+                    valid_input = True
+                elif user_input.upper() == "N":
+                    print(f"{key}'s details have not been updated")
+                    valid_input = True
+                else:
+                    print("Invalid input, try again.")
 
 
     def get(self, key):
@@ -116,44 +131,91 @@ class HashMap():
         node = self.array[array_index].find_node(key)
 
         if node == None:
-            print("Contact not found.\n\n")
+            print("Contact does not exist.")
         else:
-            print(f"Contact: {node.get_key()} | Number: {node.get_value()}")
-            print(f"Array Index: {array_index}\n\n")
+            print(f"Contact: {node.get_key()} | Number: {node.get_value()} | Array Index: {array_index}")
 
     def remove(self, key):
         hash_value = self.hash(key)
         array_index = self.compressor(hash_value)
 
-        node = self.array[array_index].remove_node(key)
+        node = self.array[array_index].find_node(key)
+
         if node == None:
-            print("Error, contact not found")
-        else:
-            print(f"{key} has been removed")
+            print("Contact does not exist")
+            return
+
+        self.array[array_index].remove_node(key)
+        print(f"{key} has been removed")
 
     def print_contact_list(self):
         for node in self.array:
             node.show_list()
     
+def handle_user_input(hashmap):
+    user_input = input("")
+
+    if user_input == "1":
+        key = input("Enter contacts name: ")
+        value = input(f"Enter {key}'s number:")
+        add_contact(key, value, hashmap)
+    elif user_input == "2":
+        key = input("Enter contact's name: ")
+        remove_contact(key, hashmap)
+    elif user_input == "3":
+        key = input("Enter contact's name: ")
+        view_contact(key, hashmap)
+    elif user_input == "4":
+        view_all_contacts(hashmap)
+    elif user_input == "5":
+        key = input("Enter contact's name: ")
+        new_value = input(f"Enter {key}'s new number: ")
+        change_contact_number(key, new_value, hashmap)
+    elif user_input == "6":
+        return False
+    
+    return True
+#1
+def add_contact(key, value, hashmap):
+    hashmap.set(key, value)
+#2
+def remove_contact(key, hashmap):
+    hashmap.remove(key)
+#3
+def view_contact(key, hashmap):
+    hashmap.get(key)
+#4
+def view_all_contacts(hashmap):
+    hashmap.print_contact_list()
+#5
+def change_contact_number(key, new_value, hashmap):
+    hash_value = hashmap.hash(key)
+    array_index = hashmap.compressor(hash_value)
+
+    contact = hashmap.array[array_index].find_node(key)
+
+    if contact == None:
+        print("Contact dose not exist")
+        return
+    
+    contact.set_value(new_value)
+    print(f"{key}'s number has been changed to {new_value}")
+
+
+
 contacts = HashMap(5)
+running = True
+while running == True:
 
-contacts.set("James", "07915")
-contacts.set("Dude", "0791f5")
-contacts.set("Guy", "07w915")
-contacts.set("Sheeeee", "0791235")
-contacts.set("re", "9387423")
-contacts.set("YOOO", "23915")
+    print("""
+      
+[1] add contact
+[2] remove contact
+[3] view contact
+[4] view all contacts
+[5] change contact number   
+[6] exit program
+          
+    """)
 
-contacts.get("James")
-contacts.get("Dude")
-contacts.get("Guy")
-contacts.get("Sheeeee")
-contacts.get("iudwaid")
-contacts.get("re")
-contacts.get("YOOO")
-
-contacts.remove("re")
-contacts.remove("James")
-contacts.remove("YOOO")
-contacts.set("Dude", "83843")
-contacts.print_contact_list()     
+    running = handle_user_input(contacts)
