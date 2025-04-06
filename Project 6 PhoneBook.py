@@ -48,18 +48,10 @@ class LinkedList:
     def find_node(self, key):    
         current_node = self.head_node
 
-        if current_node == None:
-            return None
-    
-        if current_node.get_key() == key:
-            return current_node
-        
         while current_node != None:
-            current_node = current_node.get_next_node()
-            if current_node == None:
-                break
-            elif current_node.get_key() == key:
+            if current_node.get_key() == key:
                 return current_node
+            current_node = current_node.get_next_node()
 
         return None
     
@@ -70,11 +62,11 @@ class LinkedList:
 
         elif self.head_node == node:
             self.head_node = node.get_next_node()
-            self.head_node.set_prev_node(None)
+            node.set_prev_node(None)
 
         elif self.tail_node == node:
             self.tail_node = node.get_prev_node()
-            self.tail_node.set_next_node(None)
+            node.set_next_node(None)
 
         else:
             prev_node = node.get_prev_node()
@@ -109,7 +101,13 @@ class HashMap():
         hash_value = self.hash(key)
         array_index = self.compressor(hash_value)
 
-        self.array[array_index].add_node(key, value)
+        key_exist = self.array[array_index].find_node(key)
+
+        if key_exist == None:
+            self.array[array_index].add_node(key, value)
+        else:
+            print("User already exists")
+
 
     def get(self, key):
         hash_value = self.hash(key)
@@ -155,5 +153,7 @@ contacts.get("re")
 contacts.get("YOOO")
 
 contacts.remove("re")
-
-contacts.print_contact_list()
+contacts.remove("James")
+contacts.remove("YOOO")
+contacts.set("Dude", "83843")
+contacts.print_contact_list()     
