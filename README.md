@@ -1,5 +1,5 @@
 # James-Apprenticeship-CV
-Note: Some of these projects will stay incomplete. As I learn more, my projects are getting bigger, which is good, but I need to balance building projects and learning to code equally. My future aim is to have short projects that demonstrate what I have learned and bigger projects I can build upon each time I learn something new.
+Please note that I'm learning, so my earlier projects are going to be a bit messy. Once I have some more projects under my belt, I can display the ones I'm proud of!
 
 "todolist.py" is a simple to-do list app that allows users to create, delete, edit, and mark tasks as complete. While it's not a fully finished project, I’ve learned much from working on it. The app also includes extra files, valid_users.csv and {name}_list.csv, which store the data needed for it to run. I’m looking forward to moving on to my next project and continuing to build my skills.
 
@@ -10,3 +10,5 @@ Note: Some of these projects will stay incomplete. As I learn more, my projects 
 "DocPro-S" is a project I'm currently working on, it's a document processing system for .txt files. I'm using my newly found knowledge of linked lists, stacks, queues, OS and shutil modules to create my project. I plan to add a File Manifesto, organise my file repository by date and much more. Here is a link to the git repository: https://github.com/SpoopyBlob/DocPro-S-WIP-very-early-stages-
 
 "Contacts.c" is a small project I'm working on that will dynamically store contact information, name and number in memory. For a low-level language such as C, this will be a great learning experience for producing programs that allocate memory based on the program's needs. Link to repository: https://github.com/SpoopyBlob/Contacts-Project
+
+"PhoneBook.py" in this project, I am just playing with hash maps and using separate chaining to deal with collision. Note: I use lists instead of arrays from the NumPy library.
