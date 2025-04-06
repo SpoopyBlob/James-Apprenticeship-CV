@@ -195,7 +195,7 @@ def change_contact_number(key, new_value, hashmap):
     contact = hashmap.array[array_index].find_node(key)
 
     if contact == None:
-        print("Contact dose not exist")
+        print("Contact does not exist")
         return
     
     contact.set_value(new_value)
