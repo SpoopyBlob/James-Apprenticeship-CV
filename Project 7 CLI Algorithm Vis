@@ -8,6 +8,7 @@ color_legend = {"match": "34", "none_match": "31", "default": "33"}
 #todo
     #step counter: track the iterations
     #more algorithms
+    #split into seperate py files
 
 #user control --------------------------------------------------------------------
 def user_control():
