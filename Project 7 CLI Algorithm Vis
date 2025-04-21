@@ -30,7 +30,7 @@ def user_control():
                 print("Please enter a valid number. ")
                 time.sleep(1)
                 continue
-            
+            #redundant change later
             try:
                 list, target = random_list_generator(list_size = int(list_size))
             except ValueError:
